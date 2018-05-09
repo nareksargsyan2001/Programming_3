@@ -10,7 +10,7 @@ var AkulaArr = [];
 var l = 0;
 var k = 0;
 var av = 0;
-var akula=0;
+var akula = 0;
 function setup() {
     frameRate(5);
     createCanvas(n * side + 1, m * side + 1);
@@ -22,31 +22,28 @@ function setup() {
             matrix[y][x] = Math.round(random(1));
         }
     }
-    while (l <= 3) {
+    while (l <= 10) {
         var x = Math.floor(random(n));
         var y = Math.floor(random(m));
         matrix[y][x] = 3;
 
         l++;
     }
-    while(k<=50)
-    {   
+    while (k <= 50) {
         var x = Math.floor(random(n));
         var y = Math.floor(random(m));
         matrix[y][x] = 2;
 
         k++;
     }
-    while(akula<=3)
-    {
+    while (akula <= 3) {
         var x = Math.floor(random(n));
         var y = Math.floor(random(m));
         matrix[y][x] = 5;
 
         akula++;
     }
-    while(av<=10)
-    {   
+    while (av <= 6) {
         var x = Math.floor(random(n));
         var y = Math.floor(random(m));
         matrix[y][x] = 4;
@@ -82,13 +79,11 @@ function setup() {
                 var gish = new Gishatich(x, y, 3);
                 GishatichArr.push(gish);
             }
-            else if(matrix[y][x] == 4)
-            {
+            else if (matrix[y][x] == 4) {
                 var aver = new Averich(x, y, 4);
                 AverichArr.push(aver);
             }
-            else if(matrix[y][x] == 5)
-            {
+            else if (matrix[y][x] == 5) {
                 var akul = new Akula(x, y, 5);
                 AkulaArr.push(akul);
             }
@@ -129,13 +124,11 @@ function draw() {
                 fill("red");
                 rect(x * side, y * side, side, side);
             }
-            else if(matrix[y][x] == 4)
-            {
+            else if (matrix[y][x] == 4) {
                 fill("black");
                 rect(x * side, y * side, side, side);
             }
-            else if(matrix[y][x] == 5)
-            {
+            else if (matrix[y][x] == 5) {
                 fill("blue");
                 rect(x * side, y * side, side, side);
             }
@@ -143,7 +136,7 @@ function draw() {
     }
     for (var i in grassArr) {
         grassArr[i].mul();
-        
+
     }
     for (var t in grasseaterArr) {
 
@@ -157,7 +150,7 @@ function draw() {
 
         AverichArr[i].eat();
     }
-    
+
 
 }
 

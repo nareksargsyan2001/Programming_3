@@ -1,9 +1,7 @@
 
-class Grass {
+class Grass extends LivingCreature {
     constructor(x, y, index) {
-        this.x = x;
-        this.y = y;
-        this.index = index;
+        super(x, y, index);
         this.multiply = 0;
 
     }
@@ -22,20 +20,7 @@ class Grass {
         ];
     }
 
-    chooseCell(character) {
-        this.getNewCoordinates();
-        var found = [];
-        for (var i in this.directions) {
-            var x = this.directions[i][0];
-            var y = this.directions[i][1];
-            if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
-                if (matrix[y][x] == character) {
-                    found.push(this.directions[i]);
-                }
-            }
-        }
-        return found;
-    }
+
     mul() {
 
 
@@ -60,7 +45,7 @@ class Grass {
                     for (var i in AkulaArr) {
                         if (newCell1[0] == AkulaArr[i].x && newCell1[1] == AkulaArr[i].y) {
 
-                            AkulaArr[i].energy += 0.1;
+                            AkulaArr[i].energy += 1;
                             console.log(AkulaArr[i].energy);
                             break;
 
@@ -76,12 +61,11 @@ class Grass {
 
 
 }
-class GrassEater {
+class GrassEater extends LivingCreature {
     constructor(x, y, index) {
-        this.x = x;
-        this.y = y;
+        super(x, y, index);
         this.energy = 8;
-        this.index = index;
+
 
 
     }
@@ -97,20 +81,7 @@ class GrassEater {
             [this.x + 1, this.y + 1]
         ];
     }
-    chooseCell(character) {
-        this.getNewCoordinates();
-        var found = [];
-        for (var i in this.directions) {
-            var x = this.directions[i][0];
-            var y = this.directions[i][1];
-            if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
-                if (matrix[y][x] == character) {
-                    found.push(this.directions[i]);
-                }
-            }
-        }
-        return found;
-    }
+
     mul() {
 
         var newCell = random(this.chooseCell(0));
@@ -192,7 +163,7 @@ class GrassEater {
                     matrix[this.y][this.x] = 0;
                     grasseaterArr.splice(i, 1);
                     for (var i in AkulaArr) {
-                        AkulaArr[i].energy += 0.3;
+                        AkulaArr[i].energy += 3;
                         console.log(AkulaArr[i].energy);
                     }
                     break;
@@ -216,12 +187,11 @@ class GrassEater {
 
 
 }
-class Gishatich {
+class Gishatich extends LivingCreature {
     constructor(x, y, index) {
-        this.x = x;
-        this.y = y;
+        super(x, y, index);
         this.energy = 1;
-        this.index = index;
+
     }
     getNewCoordinates() {
         this.directions = [
@@ -257,20 +227,7 @@ class Gishatich {
         }
 
     }
-    chooseCell(character) {
-        this.getNewCoordinates();
-        var found = [];
-        for (var i in this.directions) {
-            var x = this.directions[i][0];
-            var y = this.directions[i][1];
-            if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
-                if (matrix[y][x] == character) {
-                    found.push(this.directions[i]);
-                }
-            }
-        }
-        return found;
-    }
+
     move() {
         this.getNewCoordinates();
         var newCell = random(this.chooseCell(1));
@@ -326,7 +283,7 @@ class Gishatich {
                     matrix[this.y][this.x] = 0;
                     grasseaterArr.splice(i, 1);
                     for (var i in AkulaArr) {
-                        AkulaArr[i].energy += 0.3;
+                        AkulaArr[i].energy += 5;
                         console.log(AkulaArr[i].energy);
 
                     }
@@ -345,13 +302,12 @@ class Gishatich {
         }
     }
 }
-class Averich {
+class Averich extends LivingCreature {
     constructor(x, y, index) {
-        this.x = x;
-        this.y = y;
-        this.index = index;
+        super(x, y, index);
         this.energy = 15;
     }
+    
     getNewCoordinates() {
         this.directions = [
             [this.x - 1, this.y - 1],
@@ -375,20 +331,7 @@ class Averich {
 
         }
     }
-    chooseCell(character) {
-        this.getNewCoordinates();
-        var found = [];
-        for (var i in this.directions) {
-            var x = this.directions[i][0];
-            var y = this.directions[i][1];
-            if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
-                if (matrix[y][x] == character) {
-                    found.push(this.directions[i]);
-                }
-            }
-        }
-        return found;
-    }
+
     move() {
         this.getNewCoordinates();
         var newCell = random(this.chooseCell(1));
@@ -413,8 +356,7 @@ class Averich {
     }
 
 
-    die()
-    {
+    die() {
         for (var i in AverichArr) {
 
             if (this.x == AverichArr[i].x && this.y == AverichArr[i].y) {
@@ -478,6 +420,7 @@ class Averich {
                         this.y = newCell[1];
                         matrix[newCell[1]][newCell[0]] = 4;
                         AkulaArr.splice(i, 1);
+                        break;
 
 
                     }
@@ -489,11 +432,9 @@ class Averich {
 
                     }
                 }
-                if (this.energy >= 100) {
-                    this.energy
-                }
-
+                
             }
+            
         }
 
         else {
@@ -506,13 +447,15 @@ class Averich {
         }
     }
 }
-class Akula {
+class Akula extends LivingCreature {
     constructor(x, y, index) {
-        this.x = x;
-        this.y = y;
-        this.index = index;
+        super(x, y, index);
         this.energy = 0;
+        
     }
+    
+     
+    
 
 
 
