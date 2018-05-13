@@ -1,5 +1,5 @@
 var LivingCreature = require("./mayrclass");
-class Averich extends LivingCreature {
+module.exports = class Averich extends LivingCreature {
     constructor(x, y, index) {
         super(x, y, index);
         this.energy = 7;

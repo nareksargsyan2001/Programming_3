@@ -1,6 +1,6 @@
 
 var LivingCreature = require("./mayrclass");
-class Gishatich extends LivingCreature {
+module.exports = class Gishatich extends LivingCreature {
     constructor(x, y, index) {
         super(x, y, index);
         this.energy = 1;

@@ -1,5 +1,5 @@
 var LivingCreature = require("./mayrclass");
-class Grass extends LivingCreature {
+module.exports = class Grass extends LivingCreature {
     constructor(x, y, index) {
         super(x, y, index);
         this.multiply = 0;
